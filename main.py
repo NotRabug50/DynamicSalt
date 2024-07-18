@@ -3,18 +3,19 @@ import hashlib
 def generate_salt(text):
     # Generate salt from input
     hashed_text = hashlib.sha256(text.encode()).hexdigest()
-    return hashed_text[:16]
+    return hashed_text
 
 def mix_salt_into_password(password, salt):
-    # Mix salt output with password using some algorithm
-    mixed_password = ''
-    max_len = max(len(password), len(salt))
+    # Mix salt with password using XOR operation
+    password_bytes = password.encode()
+    salt_bytes = salt.encode()
+    
+    max_len = max(len(password_bytes), len(salt_bytes))
+    mixed_password = bytearray(max_len)
     for i in range(max_len):
-        if i < len(password):
-            mixed_password += password[i]
-        if i < len(salt):
-            mixed_password += salt[i]
-    return mixed_password
+        mixed_password[i] = password_bytes[i % len(password_bytes)] ^ salt_bytes[i % len(salt_bytes)]
+    
+    return mixed_password.hex()
 
 def hash_password(password):
     # Hash password

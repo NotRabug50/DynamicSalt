@@ -22,8 +22,8 @@ Dynamic Salt is a security algorithm that dynamically generates a salt from a us
 #### Sign Up
 
 1. **Receive Password**: The user enters a password, for example, `password123`.
-2. **Generate Salt**: The system generates a salt from the password using the SHA-256 algorithm (It will be more secure if you generate salt through text with your own private algorithm). The first 16 characters of the hash are taken as the salt. For `password123`, the salt might be `ef92b778bafe771e`.
-3. **Mix Salt into Password**: The system interleaves the salt into the password. For instance, combining `password123` and `ef92b778bafe771e` might result in `peafs9s2wbo7r7d81b2a3fe771e`.
+2. **Generate Salt**: The system generates a salt from the password using the SHA-256 algorithm (It will be more secure if you generate salt through text with your own private algorithm). For `password123`, the salt might be `ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f`.
+3. **Mix Salt into Password**: The system interleaves the salt into the password. For instance, combining `password123` and `ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f` might result in `15074a411558455c5353551556444212574b5605075148581610150c425c5006071155164241591154070406495842424f574302020a0014554744440a4b5057`.
 4. **Hash the Password**: The system hashes the mixed password using the SHA-256 algorithm, producing the final hashed password.
 
 #### Sign In
