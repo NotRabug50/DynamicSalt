@@ -8,31 +8,45 @@ Dynamic Salt is a security algorithm that dynamically generates a salt from a us
 - **High Security:** Dynamically generated salts make passwords more resistant to attacks such as rainbow table attacks.
 - **Simplicity:** Without the need to manage and store salts, the system's complexity is reduced.
 
+## Conceptual Enhancements
+
+### 1. Dynamic Distribution of Salt
+In addition to generating salts dynamically, the salt distribution process can be adjusted based on the password. This would add an extra layer of complexity to the encryption process.
+
+### 2. Seed Integration
+A unique, securely stored seed value could be introduced to influence the salt generation and distribution. This seed would be used in the process of salt creation and mixing, making it even harder for attackers to replicate the salt generation process.
+
+### 3. User-Specific Seed
+Implementing a different seed for each user could further enhance individual password security. This means that each user's salt generation and distribution process would be influenced by their own unique seed value.
+
+### 4. Multi-Layered Hashing
+Applying multiple layers of hashing throughout the process could provide additional security. Each stage of password processing could involve a new hash function to ensure robust protection against various types of attacks.
+
 ## Usage
 
 ### Steps
 
-1. **Receive Password**: Prompt the user to enter a password.
-2. **Generate Salt**: Dynamically generate a salt from the password.
-3. **Mix Salt into Password**: Mix the salt into the password using a specific algorithm.
-4. **Hash the Password**: Hash the resulting mixed password.
+1. **Receive Password:** Prompt the user to enter a password.
+2. **Generate Salt:** Dynamically generate a salt from the password.
+3. **Mix Salt into Password:** Mix the salt into the password using a specific algorithm.
+4. **Hash the Password:** Hash the resulting mixed password.
 
 ### Example Walkthrough
 
 #### Sign Up
 
-1. **Receive Password**: The user enters a password, for example, `password123`.
-2. **Generate Salt**: The system generates a salt from the password using the SHA-256 algorithm (It will be more secure if you generate salt through text with your own private algorithm). For `password123`, the salt might be `ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f`.
-3. **Mix Salt into Password**: The system interleaves the salt into the password. For instance, combining `password123` and `ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f` might result in `15074a411558455c5353551556444212574b5605075148581610150c425c5006071155164241591154070406495842424f574302020a0014554744440a4b5057`.
-4. **Hash the Password**: The system hashes the mixed password using the SHA-256 algorithm, producing the final hashed password.
+1. **Receive Password:** The user enters a password, for example, `password123`.
+2. **Generate Salt:** The system generates a salt from the password using a specified algorithm.
+3. **Mix Salt into Password:** The system interleaves the salt into the password.
+4. **Hash the Password:** The system hashes the mixed password.
 
 #### Sign In
 
-1. **Receive Input Password**: The user enters their password again, for example, `password123`.
-2. **Generate Salt**: The system generates the salt again from the input password using the same method as during sign-up.
-3. **Mix Salt into Password**: The system interleaves the salt into the input password as done during sign-up.
-4. **Hash the Password**: The system hashes the mixed password and compares it with the stored hashed password from the sign-up process. If they match, the authentication is successful.
+1. **Receive Input Password:** The user enters their password again, for example, `password123`.
+2. **Generate Salt:** The system generates the salt again from the input password.
+3. **Mix Salt into Password:** The system interleaves the salt into the input password as done during sign-up.
+4. **Hash the Password:** The system hashes the mixed password and compares it with the stored hashed password from the sign-up process. If they match, the authentication is successful.
 
 ## Important Note
 
-This project is a simple demonstration of the algorithm and is **not secure** for real-world applications. Please do not use this code in production environments.
+This project is a simple demonstration of the algorithm and is **not secure** for real-world applications. Please do not use this code in production environments. The conceptual enhancements discussed offer ideas for improving security but have not been implemented in this demonstration.
